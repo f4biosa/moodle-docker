@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
+# Carregar variáveis do arquivo .env 
+if [ -f .env ]; then 
+    export $(grep -v '^#' .env | xargs)
+fi
+
 # First find out if this was called from symlink,
 # then find the real path of parent directory.
 # This is needed because macOS does not have GNU realpath.
