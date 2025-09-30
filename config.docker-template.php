@@ -55,7 +55,7 @@ $CFG->smtphosts = 'mailpit:1025';
 $CFG->noreplyaddress = 'noreply@example.com';
 
 // Debug options - possible to be controlled by flag in future..
-$CFG->debug = (E_ALL | E_STRICT); // DEBUG_DEVELOPER
+$CFG->debug = (E_ALL); // DEBUG_DEVELOPER
 $CFG->debugdisplay = 1;
 $CFG->debugstringids = 1; // Add strings=1 to url to get string ids.
 $CFG->perfdebug = 15;
@@ -137,6 +137,13 @@ if (getenv('MOODLE_DOCKER_BBB_MOCK')) {
 
 if (getenv('MOODLE_DOCKER_MATRIX_MOCK')) {
     define('TEST_COMMUNICATION_MATRIX_MOCK_SERVER', "http://matrixmock/{$mockhash}");
+}
+
+if (getenv('MOODLE_DOCKER_MLBACKEND')) {
+    define('TEST_MLBACKEND_PYTHON_HOST', 'mlbackendpython');
+    define('TEST_MLBACKEND_PYTHON_PORT', 5000);
+    define('TEST_MLBACKEND_PYTHON_USERNAME', 'default');
+    define('TEST_MLBACKEND_PYTHON_PASSWORD', 'sshhhh');
 }
 
 require_once(__DIR__ . '/lib/setup.php');
